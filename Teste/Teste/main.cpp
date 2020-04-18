@@ -15,12 +15,16 @@ void specialKeys(int key, int x, int y);
 // ----------------------------------------------------------
 // Variáveis Globais
 // ----------------------------------------------------------
-double rotate_x = -20;
-double rotate_y = 20;
-
 double transl_x = 0;
 double transl_y = 0;
 double transl_z = 0;
+
+double rotate_x = -20;
+double rotate_y = 20;
+
+double scale_x = 1;
+double scale_y = 1;
+double scale_z = 1;
 
 
 // ----------------------------------------------------------
@@ -34,7 +38,7 @@ void display() {
 	// Reinicia transformações
 	glLoadIdentity();
 
-	// Outras Transformações
+	// Translate
 	glTranslatef( transl_x, 0.0, 0.0 );      
 	glTranslatef(0.0, transl_y, 0.0);   
 	glTranslatef(0.0, 0.0, transl_z);   
@@ -45,8 +49,8 @@ void display() {
 	glRotatef(rotate_y, 0.0, 1.0, 0.0);
 	
 
-	// Outras Transformações
-	//glScalef( 2.0, 2.0, 0.0 );          // Não está incluído
+	// Scale
+	glScalef( scale_x, scale_y, scale_z );          // Não está incluído
 
 
 	//Lado multicolorido - FRENTE
@@ -122,13 +126,12 @@ void display() {
 // Função specialKeys()
 // ----------------------------------------------------------
 void specialKeys(int key, int x, int y) {
-
 	//Translations
-	if(key == GLUT_KEY_F1)
+	if (key == GLUT_KEY_F1)
 		transl_x += 0.4;
 
 	else if (key == GLUT_KEY_F2)
-	    transl_x -= 0.4;
+		transl_x -= 0.4;
 
 	else if (key == GLUT_KEY_F3)
 		transl_y += 0.4;
@@ -157,12 +160,36 @@ void specialKeys(int key, int x, int y) {
 	else if (key == GLUT_KEY_DOWN)
 		rotate_x -= 5;
 
+	//Scale
+	else if (key == GLUT_KEY_F7) {
+		scale_x -= 0.1;
+		scale_y -= 0.1;
+		scale_z -= 0.1;
+	}
+
+	else if (key == GLUT_KEY_F8) {
+		scale_x += 0.1;
+		scale_y += 0.1;
+		scale_z += 0.1;
+	}
+
+	else if (key == GLUT_KEY_F9)
+		scale_x += 0.1;
+
+	else if (key == GLUT_KEY_F10)
+		scale_x -= 0.1;
+
+	/*
+	else if (key == GLUT_KEY_...)
+		scale_y += 0.5;
+
+	else if (key == GLUT_KEY_...)
+		scale_y -= 0.5;*/
+
+	
 	// Requisitar atualização do display
 	glutPostRedisplay();
-
 }
-
-
 
 // ----------------------------------------------------------
 // Função main()
@@ -176,7 +203,7 @@ int main(int argc, char* argv[]) {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 
 	// Cria a janela do programa
-	glutCreateWindow("Cubo");
+	glutCreateWindow("The Cube");
 
 	// Habilita o teste de profundidade do Z-buffer
 	glEnable(GL_DEPTH_TEST);
