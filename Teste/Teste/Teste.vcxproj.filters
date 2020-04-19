@@ -19,4 +19,8 @@
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="cube.txt" />
+    <Text Include="about_files.txt" />
+  </ItemGroup>
 </Project>

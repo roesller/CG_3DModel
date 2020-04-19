@@ -1,0 +1,49 @@
+/*
+	ofstream, ifstream, fstream; saída, entrada, ambos
+
+	ofstream fileO; //saída
+	file.open("test.txt", ios::app);//cria e abre, fim do file e insere na sequência
+	file << "estou escrevendo dentro do arquivo\n";
+	file.close();//fecha o file
+	
+	ifstream fileI;
+	string linha;
+
+	fileI.open("test.txt");
+	if(fileI.is_open()){
+		while(getline(fileI, linha)){
+			cout << linha <<endl;
+		}
+		fileI.close();
+	}else{
+		cout << "It´s not possible open it" <<endl;
+	}
+
+	fstream file;
+	char opc = 's';
+	string nome;
+
+	file.open("test2.txt", ios::out | ios::app); //modo escrita, add
+
+	while (opc == 's') or (opc == 'S'){
+		cout << "Digite algo...";
+		cin >> nome;
+		file << nome << "\n";
+		cout << "Quer continuar? [s/n]";
+		cin >> opc;
+		system("CLS");
+	}
+	file.close();
+
+	file.open("test2.txt", ios::in);
+	cout << "Muitas coisas escritas..." << endl;
+	if(file.is_open()){
+		while(getline(file, linha)){
+			cout << linha << endl;
+		}
+		file.close();
+	}else{
+		cout << "It wasn´t possible open it." << endl;
+	}
+
+*/

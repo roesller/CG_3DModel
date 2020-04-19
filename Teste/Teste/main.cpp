@@ -3,7 +3,10 @@
 #include <GL\freeglut.h>
 #include <math.h>
 #include <stdio.h>
-
+#include <fstream>
+#include <cstdlib>
+#include <iostream>
+using namespace std;
 // Projeto OpenGL
 
 // ----------------------------------------------------------
@@ -26,6 +29,7 @@ double scale_x = 1;
 double scale_y = 1;
 double scale_z = 1;
 
+fstream file;
 
 // ----------------------------------------------------------
 // função display() 
@@ -43,16 +47,14 @@ void display() {
 	glTranslatef(0.0, transl_y, 0.0);   
 	glTranslatef(0.0, 0.0, transl_z);   
 
-
 	// Rotaciona quando o usuário muda rotate_x e rotate_y
 	glRotatef(rotate_x, 1.0, 0.0, 0.0); 
-	glRotatef(rotate_y, 0.0, 1.0, 0.0);
-	
+	glRotatef(rotate_y, 0.0, 1.0, 0.0);	
 
 	// Scale
-	glScalef( scale_x, scale_y, scale_z );          // Não está incluído
+	glScalef( scale_x, scale_y, scale_z );          
 
-
+	////Dados ser anexado em um doc externo .json/.obj	
 	//Lado multicolorido - FRENTE
 	glBegin(GL_POLYGON);
 
@@ -70,7 +72,6 @@ void display() {
 
 	glEnd();
 
-	////Dados ser anexado em um doc externo .json/.obj
 	// Lado branco - TRASEIRA
 	glBegin(GL_POLYGON);
 	glColor3f(1.0, 1.0, 1.0);
@@ -119,7 +120,6 @@ void display() {
 
 	glFlush();
 	glutSwapBuffers();
-
 }
 
 // ----------------------------------------------------------
@@ -185,7 +185,6 @@ void specialKeys(int key, int x, int y) {
 
 	else if (key == GLUT_KEY_...)
 		scale_y -= 0.5;*/
-
 	
 	// Requisitar atualização do display
 	glutPostRedisplay();
@@ -214,7 +213,7 @@ int main(int argc, char* argv[]) {
 
 	// Passa o controle dos eventos para o GLUT
 	glutMainLoop();
-
+		
 	// Retorna para o SO
 	return 0;
 }
