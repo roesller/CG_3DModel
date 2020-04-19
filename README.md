@@ -16,6 +16,7 @@ KEY_LEFT: rotate_y (-);
 KEY_UP: rotate_x (+);
 KEY_DOWN: rotate_x (-);
 
+Scale:
 F7: scale_x, scale_y, scale_z (+);
 F8: scale_x, scale_y, scale_z (-);
 F9: scale_x (+);
